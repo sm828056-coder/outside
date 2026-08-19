@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b13">
+  <title>A Little Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <iframe class="music-player" id="music-player" title="Background song" src="https://www.youtube-nocookie.com/embed/IeqxLuwDx2c?autoplay=1&mute=1&loop=1&playlist=IeqxLuwDx2c&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" loading="eager"></iframe>
+  <div class="heart-field" id="heart-field" aria-hidden="true"></div>
+  <main class="app-shell">
+    <div class="topbar">
+      <span class="eyebrow">A little invitation</span>
+      <span class="progress" aria-label="Step 1 of 6"><span class="progress-current"></span><span></span><span></span><span></span><span></span><span></span></span>
+    </div>
+
+    <section class="screen screen-active" data-screen="1" aria-labelledby="question-title">
+      <div class="intro-copy">
+        <p class="kicker">One tiny question</p>
+        <h1 id="question-title">Do you wanna<br><em>hang out</em> with me?</h1>
+        <p class="subcopy">I have a feeling this could be a really lovely day.</p>
+      </div>
+      <div class="choice-stage" id="choice-stage">
+        <div class="choice-row" id="choice-row">
+          <button class="choice-button no-choice" id="no-button" type="button">NO</button>
+          <button class="choice-button primary-choice" id="yes-button" type="button">Yeah, of course</button>
+        </div>
+        <button class="choice-button second-choice" id="love-button" type="button">I would LOVE too!</button>
+      </div>
+      <p class="hint" id="no-hint" aria-live="polite">There is really only one correct answer.</p>
+      <div class="reason-reveal" id="reason-reveal" hidden>
+        <p>Still not convinced?</p>
+        <form class="custom-reason" id="custom-reason-form">
+          <input id="custom-reason-input" type="text" maxlength="80" placeholder="Or tell me why..." aria-label="Your reason">
+          <button type="submit" id="send-reason-instagram" hidden>Send it on Instagram <span>&#9825;</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section class="screen celebration-screen" data-screen="2" aria-labelledby="celebration-title" hidden>
+      <div class="screen-heading">
+        <p class="kicker">That makes me smile</p>
+        <h2 id="celebration-title">I am so <em>happy!</em></h2>
+        <p class="subcopy">We are going to hang out together, and I cannot wait.</p>
+      </div>
+      <button class="next-button" id="celebration-next" type="button">Next <span>&#8594;</span></button>
+    </section>
+
+    <section class="screen hangout-screen" data-screen="4" aria-labelledby="hangout-title" hidden>
+      <div class="screen-heading">
+        <p class="kicker">One more little thing</p>
+        <h2 id="hangout-title">I can't wait to<br><em>hangout with you!</em></h2>
+        <p class="subcopy">This is going to be such a lovely day.</p>
+      </div>
+      <div class="hangout-art" id="hangout-art">
+        <img class="hangout-gif" src="hangout.gif" alt="Cute excited face with hearts" onerror="this.hidden=true; document.querySelector('#hangout-fallback').hidden=false">
+        <div class="hangout-fallback" id="hangout-fallback" aria-label="Cute excited face with hearts" hidden><span>🥰</span><i>♥</i><i>♥</i><i>♥</i></div>
+      </div>
+      <button class="next-button" id="hangout-next" type="button">Choose a place <span>&#8594;</span></button>
+    </section>
+
+    <section class="screen" data-screen="5" aria-labelledby="place-title" hidden>
+      <div class="screen-heading">
+        <p class="kicker">Step four</p>
+        <h2 id="place-title">Where do you want<br>to <em>go?</em></h2>
+        <p class="subcopy">Pick the mood for our little adventure.</p>
+      </div>
+      <div class="place-grid" role="group" aria-label="Choose a place">
+        <button class="place-card" type="button" data-place="Cafe"><span class="place-number">01</span><span class="place-emoji" aria-hidden="true">&#9749;</span><strong>Cafe</strong><span>Something warm and unhurried</span></button>
+        <button class="place-card" type="button" data-place="Park"><span class="place-number">02</span><span class="place-emoji" aria-hidden="true">&#127795;</span><strong>Park</strong><span>A walk with room to wander</span></button>
+        <button class="place-card" type="button" data-place="Surprise"><span class="place-number">03</span><span class="place-emoji" aria-hidden="true">&#127873;</span><strong>Surprise</strong><span>Trust me on this one</span></button>
+        <button class="place-card" type="button" data-place="Meeting place"><span class="place-number">04</span><span class="place-emoji" aria-hidden="true">&#128205;</span><strong>Meeting place</strong><span>In front of Shinesage</span></button>
+      </div>
+      <button class="next-button" id="place-next" type="button" disabled>Choose a place <span>&#8594;</span></button>
+    </section>
+
+    <section class="screen" data-screen="3" aria-labelledby="date-title" hidden>
+      <div class="screen-heading">
+        <p class="kicker">Step three</p>
+        <h2 id="date-title">Which date do<br>you want to <em>go?</em></h2>
+        <p class="subcopy">Choose a time that feels good to you.</p>
+      </div>
+      <div class="date-form">
+        <label for="date-input">Date <input id="date-input" type="date"></label>
+        <label for="time-input">Time <input id="time-input" type="time"></label>
+      </div>
+      <button class="next-button" id="date-next" type="button" disabled>It's a Date! <span>&#8594;</span></button>
+    </section>
+
+    <section class="screen final-screen" data-screen="6" aria-labelledby="final-title" hidden>
+      <div class="screen-heading">
+        <p class="kicker">The plan is set</p>
+        <h2 id="final-title">It's a <em>date!</em></h2>
+        <p class="subcopy">I am already looking forward to it.</p>
+      </div>
+      <div class="summary" aria-label="Your date details">
+        <div><span>Place</span><strong id="summary-place">Cafe</strong></div>
+        <div><span>Date</span><strong id="summary-date">-</strong></div>
+        <div><span>Time</span><strong id="summary-time">-</strong></div>
+      </div>
+      <p class="meet-line">So let's meet <strong id="meet-time">at your chosen time</strong>.</p>
+      <p class="share-label">Send the plan with</p>
+      <div class="share-options" role="group" aria-label="Choose how to send the plan">
+        <a class="share-option" id="send-email" href="#"><span class="share-icon">&#9993;</span><strong>Email</strong><span>sm828056@gmail.com</span></a>
+        <a class="share-option" id="send-text" href="#"><span class="share-icon">&#128172;</span><strong>Text message</strong><span>Open SMS composer</span></a>
+        <a class="share-option" id="send-instagram" href="instagram://app"><span class="share-icon">&#9825;</span><strong>Instagram</strong><span>Copy and open the app</span></a>
+      </div>
+      <p class="email-note" id="share-note">Choose an option to send the plan.</p>
+    </section>
+
+    <footer>Made for a very good day <span>&#10022;</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
