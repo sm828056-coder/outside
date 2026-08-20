@@ -250,14 +250,14 @@ function prepareFinalScreen() {
     try { await navigator.clipboard.writeText(shareMessage); document.querySelector('#share-note').textContent = 'Message copied. Paste it into your messaging app.'; }
     catch { document.querySelector('#share-note').textContent = 'Copy the plan and send it from your computer.'; }
   };
-  instagramLink.href = isMobileDevice ? 'instagram://direct-inbox' : 'https://www.instagram.com/direct/inbox/';
   instagramLink.onclick = async (event) => {
-    if (!isMobileDevice) return;
     event.preventDefault();
     try { await navigator.clipboard.writeText(shareMessage); }
     catch { /* Clipboard access may be unavailable in some mobile browsers. */ }
-    document.querySelector('#share-note').textContent = 'Message copied. Choose a person in Instagram and paste it into the chat.';
-    window.location.href = 'instagram://direct-inbox';
+    document.querySelector('#share-note').textContent = isMobileDevice
+      ? 'Message copied. Choose a person in Instagram Direct and paste it into the chat.'
+      : 'Message copied. Open Instagram Direct and paste it into the chat.';
+    if (isMobileDevice) window.location.href = 'instagram://direct-inbox';
   };
   showScreen(6);
 }
