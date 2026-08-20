@@ -261,7 +261,7 @@ function prepareFinalScreen() {
   const textLink = document.querySelector('#send-text');
   const instagramLink = document.querySelector('#send-instagram');
   document.querySelector('#send-email').href = mailtoUrl;
-  textLink.href = isMobileDevice ? `sms:${isIphone ? '&' : '?'}body=${body}` : '#';
+  textLink.href = isMobileDevice ? `sms:01021505390${isIphone ? '&' : '?'}body=${body}` : '#';
   textLink.onclick = async (event) => {
     if (isMobileDevice) return;
     event.preventDefault();
