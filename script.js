@@ -273,6 +273,9 @@ function prepareFinalScreen() {
     if (isMobileDevice) {
       copyMessage(shareMessage);
       window.location.href = 'instagram://app';
+      setTimeout(() => {
+        window.location.href = 'https://www.instagram.com/';
+      }, 1200);
       return;
     }
     const copied = await copyMessage(shareMessage);
