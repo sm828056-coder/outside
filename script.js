@@ -270,6 +270,11 @@ function prepareFinalScreen() {
   };
   instagramLink.onclick = async (event) => {
     event.preventDefault();
+    if (isMobileDevice) {
+      copyMessage(shareMessage);
+      window.location.href = 'instagram://app';
+      return;
+    }
     const copied = await copyMessage(shareMessage);
     document.querySelector('#share-note').textContent = copied
       ? 'Message copied. Open Instagram, choose the person, paste the message, and press Send.'
