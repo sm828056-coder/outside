@@ -100,6 +100,7 @@ em { color: var(--coral); font-style: normal; }
 .share-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; max-width: 720px; gap: 10px; text-align: left; }
 .share-option { min-height: 100px; padding: 14px; color: var(--ink); background: rgba(255,248,251,.14); border: 1px solid rgba(255,172,208,.36); border-radius: 5px; text-decoration: none; display: flex; flex-direction: column; transition: .2s ease; opacity: 1; }
 .share-option:hover, .share-option:focus-visible { color: var(--white); background: rgba(255,79,146,.2); border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,79,146,.14); transform: translateY(-3px); outline: none; }
+.instagram-option { border-color: var(--coral); }
 .share-icon { color: var(--coral); font-size: 22px; line-height: 1; margin-bottom: auto; }
 .share-option strong { font-size: 14px; }
 .share-option span:last-child { color: var(--muted); font-size: 10px; margin-top: 3px; }
