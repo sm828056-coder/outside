@@ -254,17 +254,9 @@ function prepareFinalScreen() {
   instagramLink.onclick = async (event) => {
     if (!isMobileDevice) return;
     event.preventDefault();
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "It's a date!", text: shareMessage });
-        document.querySelector('#share-note').textContent = 'Choose Instagram, select who to send it to, then press Send.';
-        return;
-      } catch (error) {
-        if (error.name === 'AbortError') return;
-      }
-    }
-    try { await navigator.clipboard.writeText(shareMessage); document.querySelector('#share-note').textContent = 'Message copied. Paste it into Instagram.'; }
-    catch { document.querySelector('#share-note').textContent = 'Open Instagram and send the plan.'; }
+    try { await navigator.clipboard.writeText(shareMessage); }
+    catch { /* Clipboard access may be unavailable in some mobile browsers. */ }
+    document.querySelector('#share-note').textContent = 'Message copied. Choose a person in Instagram and paste it into the chat.';
     window.location.href = 'instagram://app';
   };
   showScreen(6);
