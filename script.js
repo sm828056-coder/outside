@@ -272,9 +272,9 @@ function prepareFinalScreen() {
     event.preventDefault();
     if (isMobileDevice) {
       copyMessage(shareMessage);
-      window.location.href = 'instagram://app';
+      window.location.href = 'instagram://direct-inbox';
       setTimeout(() => {
-        window.location.href = 'https://www.instagram.com/';
+        window.location.href = 'https://www.instagram.com/direct/inbox/';
       }, 1200);
       return;
     }
