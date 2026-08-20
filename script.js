@@ -19,6 +19,24 @@ const musicPlayer = document.querySelector('#music-player');
 const audibleSongUrl = 'https://www.youtube-nocookie.com/embed/IeqxLuwDx2c?autoplay=1&loop=1&playlist=IeqxLuwDx2c&controls=0&modestbranding=1&rel=0';
 let musicStarted = false;
 
+async function copyMessage(message) {
+  try {
+    await navigator.clipboard.writeText(message);
+    return true;
+  } catch {
+    const helper = document.createElement('textarea');
+    helper.value = message;
+    helper.setAttribute('readonly', '');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand('copy');
+    helper.remove();
+    return copied;
+  }
+}
+
 function createHeart() {
   const heart = document.createElement('span');
   heart.className = 'floating-heart';
@@ -252,11 +270,10 @@ function prepareFinalScreen() {
   };
   instagramLink.onclick = async (event) => {
     event.preventDefault();
-    try { await navigator.clipboard.writeText(shareMessage); }
-    catch { /* Clipboard access may be unavailable in some mobile browsers. */ }
-    document.querySelector('#share-note').textContent = isMobileDevice
+    const copied = await copyMessage(shareMessage);
+    document.querySelector('#share-note').textContent = copied
       ? 'Message copied. Open Instagram, choose the person, paste the message, and press Send.'
-      : 'Message copied. Open Instagram Direct, choose the person, paste the message, and press Send.';
+      : 'Copy failed. Select and copy the plan text manually before opening Instagram.';
   };
   showScreen(6);
 }
