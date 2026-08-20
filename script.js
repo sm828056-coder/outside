@@ -255,9 +255,8 @@ function prepareFinalScreen() {
     try { await navigator.clipboard.writeText(shareMessage); }
     catch { /* Clipboard access may be unavailable in some mobile browsers. */ }
     document.querySelector('#share-note').textContent = isMobileDevice
-      ? 'Message copied. Choose a person in Instagram Direct and paste it into the chat.'
-      : 'Message copied. Open Instagram Direct and paste it into the chat.';
-    if (isMobileDevice) window.location.href = 'instagram://direct-inbox';
+      ? 'Message copied. Open Instagram, choose the person, paste the message, and press Send.'
+      : 'Message copied. Open Instagram Direct, choose the person, paste the message, and press Send.';
   };
   showScreen(6);
 }
