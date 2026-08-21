@@ -105,6 +105,24 @@ em { color: var(--coral); font-style: normal; }
 .share-option strong { font-size: 14px; }
 .share-option span:last-child { color: var(--muted); font-size: 10px; margin-top: 3px; }
 .email-note { color: var(--muted); font-size: 12px; margin-top: 12px; }
+.share-sheet { position: fixed; z-index: 10; inset: 0; display: grid; place-items: end center; }
+.share-sheet[hidden] { display: none; }
+.share-sheet-backdrop { position: absolute; inset: 0; background: rgba(10, 6, 12, .72); backdrop-filter: blur(5px); }
+.share-dialog { position: relative; width: min(100% - 28px, 520px); margin-bottom: 20px; padding: 30px; color: var(--ink); background: #21141e; border: 1px solid rgba(255,172,208,.42); border-radius: 12px; box-shadow: 0 22px 70px rgba(0,0,0,.5); animation: sheet-up .28s ease both; text-align: left; }
+.share-dialog .kicker { margin-bottom: 10px; }
+.share-dialog h2 { font-size: clamp(34px, 6vw, 50px); }
+.share-dialog-copy { margin: 10px 0 22px; color: var(--muted); font-size: 13px; }
+.share-close { position: absolute; top: 14px; right: 15px; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: transparent; cursor: pointer; font-size: 24px; line-height: 1; }
+.share-close:hover, .share-close:focus-visible { color: var(--white); border-color: var(--coral); outline: none; }
+.app-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.app-option { min-height: 112px; padding: 13px 11px; display: flex; flex-direction: column; color: var(--ink); background: rgba(255,248,251,.08); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; transition: .2s ease; }
+.app-option:hover, .app-option:focus-visible { background: rgba(255,95,160,.17); border-color: var(--coral); transform: translateY(-3px); outline: none; }
+.app-instagram { border-color: var(--coral); }
+.app-kakao { border-color: #f4d33f; }
+.app-option-icon { margin-bottom: auto; color: var(--coral); font-size: 25px; line-height: 1; }
+.app-option strong { font-size: 13px; }
+.app-option span:last-child { margin-top: 4px; color: var(--muted); font-size: 10px; }
+@keyframes sheet-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 footer { margin-top: auto; color: var(--muted); font-size: 9px; }
 footer span { color: var(--coral); margin-left: 7px; font-size: 15px; }
 @keyframes arrive { from { opacity: 1; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -115,3 +133,4 @@ footer span { color: var(--coral); margin-left: 7px; font-size: 15px; }
 @keyframes heart-pop { 0%, 100% { transform: scale(.8); opacity: .65; } 50% { transform: scale(1.3); opacity: 1; } }
 @keyframes flower-bloom { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.2) rotate(0); } 18% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--petal-x)), calc(-50% + var(--petal-y))) scale(1.1) rotate(var(--petal-rotation)); } }
 @media (max-width: 600px) { body { overflow-x: hidden; overflow-y: auto; } .app-shell { width: min(100% - 32px, 1040px); height: auto; min-height: 100svh; overflow: visible; padding-top: 22px; } .screen { flex: none; min-height: calc(100svh - 120px); overflow: visible; padding: 40px 0 50px; justify-content: flex-start; } .choice-stage { min-height: 255px; } .choice-button { width: max-content; } .no-choice { top: 170px; } .place-grid { grid-template-columns: 1fr; gap: 6px; margin-top: 24px; } .place-card { min-height: 72px; padding: 9px 11px; } .place-emoji { margin: 2px 0 3px; font-size: 18px; } .place-card strong { font-size: 17px; } .place-card span:last-child { font-size: 10px; margin-top: 2px; } .place-card.selected::after { top: 8px; right: 8px; width: 18px; height: 18px; font-size: 11px; } .date-form { flex-direction: column; margin-top: 38px; } .summary div { min-width: 33%; } .summary div + div { padding-left: 12px; } .summary div { padding-right: 12px; } .summary strong { font-size: 18px; } .share-options { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; } .share-option { min-height: 100px; padding: 12px 8px; } .share-option strong { font-size: 12px; } .share-option span:last-child { font-size: 9px; } }
+@media (max-width: 600px) { .share-dialog { width: 100%; margin-bottom: 0; padding: 26px 18px 22px; border-radius: 12px 12px 0 0; } .app-options { grid-template-columns: repeat(2, 1fr); } }

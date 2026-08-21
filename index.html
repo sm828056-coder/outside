@@ -115,6 +115,22 @@
 
     <footer>Made for a very good day <span>&#10022;</span></footer>
   </main>
+  <div class="share-sheet" id="share-sheet" hidden>
+    <div class="share-sheet-backdrop" data-close-share-sheet></div>
+    <section class="share-dialog" role="dialog" aria-modal="true" aria-labelledby="share-dialog-title">
+      <button class="share-close" type="button" aria-label="Close share options" data-close-share-sheet>&times;</button>
+      <p class="kicker">Send the plan</p>
+      <h2 id="share-dialog-title">Choose an <em>app</em></h2>
+      <p class="share-dialog-copy">Your message is copied and ready to paste.</p>
+      <div class="app-options">
+        <a class="app-option app-instagram" id="open-instagram" href="https://www.instagram.com/direct/inbox/" target="_blank" rel="noopener"><span class="app-option-icon">&#9825;</span><strong>Instagram</strong><span>Direct messages</span></a>
+        <a class="app-option" id="open-whatsapp" href="#" target="_blank" rel="noopener"><span class="app-option-icon">&#128172;</span><strong>WhatsApp</strong><span>Send a message</span></a>
+        <a class="app-option" id="open-messages" href="#"><span class="app-option-icon">&#9993;</span><strong>Messages</strong><span>Text message</span></a>
+        <a class="app-option" id="open-email" href="#"><span class="app-option-icon">&#9993;</span><strong>Email</strong><span>Send by email</span></a>
+        <a class="app-option app-kakao" id="open-kakao" href="kakaotalk://talk" target="_blank" rel="noopener"><span class="app-option-icon">&#128172;</span><strong>KakaoTalk</strong><span>Send a message</span></a>
+      </div>
+    </section>
+  </div>
   <script src="script.js?v=11"></script>
 </body>
 </html>

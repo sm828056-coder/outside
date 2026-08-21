@@ -17,7 +17,17 @@ const loveButton = document.querySelector('#love-button');
 const reasonReveal = document.querySelector('#reason-reveal');
 const musicPlayer = document.querySelector('#music-player');
 const audibleSongUrl = 'https://www.youtube-nocookie.com/embed/IeqxLuwDx2c?autoplay=1&loop=1&playlist=IeqxLuwDx2c&controls=0&modestbranding=1&rel=0';
+const shareSheet = document.querySelector('#share-sheet');
+const shareNote = document.querySelector('#share-note');
 let musicStarted = false;
+
+function closeShareSheet() {
+  shareSheet.hidden = true;
+}
+
+document.querySelectorAll('[data-close-share-sheet]').forEach((element) => {
+  element.addEventListener('click', closeShareSheet);
+});
 
 async function copyMessage(message) {
   try {
@@ -260,7 +270,21 @@ function prepareFinalScreen() {
   const isIphone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   const textLink = document.querySelector('#send-text');
   const instagramLink = document.querySelector('#send-instagram');
+  const whatsappLink = document.querySelector('#open-whatsapp');
+  const messagesLink = document.querySelector('#open-messages');
+  const emailAppLink = document.querySelector('#open-email');
   document.querySelector('#send-email').href = mailtoUrl;
+  whatsappLink.href = `https://wa.me/?text=${body}`;
+  messagesLink.href = isMobileDevice ? `sms:01021505390${isIphone ? '&' : '?'}body=${body}` : '#';
+  emailAppLink.href = mailtoUrl;
+  messagesLink.onclick = (event) => {
+    if (isMobileDevice) closeShareSheet();
+    else {
+      event.preventDefault();
+      copyMessage(shareMessage);
+      shareNote.textContent = 'Message copied. Paste it into your messaging app.';
+    }
+  };
   textLink.href = isMobileDevice ? `sms:01021505390${isIphone ? '&' : '?'}body=${body}` : '#';
   textLink.onclick = async (event) => {
     if (isMobileDevice) return;
@@ -270,18 +294,9 @@ function prepareFinalScreen() {
   };
   instagramLink.onclick = async (event) => {
     event.preventDefault();
-    if (isMobileDevice) {
-      copyMessage(shareMessage);
-      window.location.href = 'instagram://direct-inbox';
-      setTimeout(() => {
-        window.location.href = 'https://www.instagram.com/direct/inbox/';
-      }, 1200);
-      return;
-    }
     const copied = await copyMessage(shareMessage);
-    document.querySelector('#share-note').textContent = copied
-      ? 'Message copied. Open Instagram, choose the person, paste the message, and press Send.'
-      : 'Copy failed. Select and copy the plan text manually before opening Instagram.';
+    shareSheet.hidden = false;
+    shareNote.textContent = copied ? 'Message copied. Choose an app to send it.' : 'Choose an app, then copy the plan text manually.';
   };
   showScreen(6);
 }
