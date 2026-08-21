@@ -19,6 +19,7 @@ const musicPlayer = document.querySelector('#music-player');
 const audibleSongUrl = 'https://www.youtube-nocookie.com/embed/IeqxLuwDx2c?autoplay=1&loop=1&playlist=IeqxLuwDx2c&controls=0&modestbranding=1&rel=0';
 const shareSheet = document.querySelector('#share-sheet');
 const shareNote = document.querySelector('#share-note');
+const copyShareMessage = document.querySelector('#copy-share-message');
 let musicStarted = false;
 
 function closeShareSheet() {
@@ -27,6 +28,11 @@ function closeShareSheet() {
 
 document.querySelectorAll('[data-close-share-sheet]').forEach((element) => {
   element.addEventListener('click', closeShareSheet);
+});
+
+copyShareMessage.addEventListener('click', async () => {
+  const copied = await copyMessage(window.shareMessage || '');
+  shareNote.textContent = copied ? 'Message copied to your clipboard.' : 'Copy failed. Please select the plan text manually.';
 });
 
 async function copyMessage(message) {
@@ -264,6 +270,7 @@ function prepareFinalScreen() {
   document.querySelector('#meet-time').textContent = formattedTime;
   const subject = encodeURIComponent("It's a date!");
   const shareMessage = `It's a date!\n\nPlace: ${state.place}\nDate: ${formattedDate}\nTime: ${formattedTime}\n\nLet's meet at ${formattedTime}.`;
+  window.shareMessage = shareMessage;
   const body = encodeURIComponent(shareMessage);
   const mailtoUrl = `mailto:sm828056@gmail.com?subject=${subject}&body=${body}`;
   const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);

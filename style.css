@@ -114,11 +114,13 @@ em { color: var(--coral); font-style: normal; }
 .share-dialog-copy { margin: 10px 0 22px; color: var(--muted); font-size: 13px; }
 .share-close { position: absolute; top: 14px; right: 15px; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: transparent; cursor: pointer; font-size: 24px; line-height: 1; }
 .share-close:hover, .share-close:focus-visible { color: var(--white); border-color: var(--coral); outline: none; }
-.app-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.app-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .app-option { min-height: 112px; padding: 13px 11px; display: flex; flex-direction: column; color: var(--ink); background: rgba(255,248,251,.08); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; transition: .2s ease; }
+.app-option { font: inherit; text-align: left; cursor: pointer; }
 .app-option:hover, .app-option:focus-visible { background: rgba(255,95,160,.17); border-color: var(--coral); transform: translateY(-3px); outline: none; }
 .app-instagram { border-color: var(--coral); }
 .app-kakao { border-color: #f4d33f; }
+.copy-option { border-color: #74d6c2; }
 .app-option-icon { margin-bottom: auto; color: var(--coral); font-size: 25px; line-height: 1; }
 .app-option strong { font-size: 13px; }
 .app-option span:last-child { margin-top: 4px; color: var(--muted); font-size: 10px; }
